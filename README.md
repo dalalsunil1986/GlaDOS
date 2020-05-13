@@ -9,6 +9,6 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * The OS kernel!
 * The ability to port to different system architectures.
 * Software: 
-..* Text editor / compiler for our own games engine
-..* Small (text based) games
+    * Text editor / compiler for our own games engine
+    * Small (text based) games
 * Sound?
