@@ -20,3 +20,4 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * This paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
 * QEmu: https://www.qemu.org/
 * VirtualBox: https://www.virtualbox.org/
+* HxD: https://mh-nexus.de/en/hxd/
