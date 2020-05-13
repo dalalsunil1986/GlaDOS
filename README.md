@@ -13,10 +13,11 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
     * Small (text based) games
 * Sound?
 
+### So far: 
+* We have succesfully created an empty boot sector (bootsector.bin and bootsector.img) which we can open in VirtualBox
+
 ### Tools: 
 * This paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
 * QEmu: https://www.qemu.org/
 * VirtualBox: https://www.virtualbox.org/
-
-### So far: 
-* We have succesfully created an empty boot sector (bootsector.bin and bootsector.img) which we can open in VirtualBox
+* HxD: https://mh-nexus.de/en/hxd/
