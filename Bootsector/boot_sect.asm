@@ -26,7 +26,8 @@ start:
 	newline db 0dh, 0ah, 0
 
 
-print_string:			
+print_string:	
+	pusha		
 	mov ah, 0Eh		
 
 .repeat:
@@ -37,6 +38,7 @@ print_string:
 	jmp .repeat
 
 .done:
+	popa
 	ret
 
 
