@@ -14,7 +14,8 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * Sound?
 
 ### So far: 
-* We have succesfully created an empty boot sector (bootsector.bin) which we can open in VirtualBox
+* Succesfully created an empty boot sector (bootsector.bin) which we can open in VirtualBox
+* Succesfully created a boot sector that greets you with a nice "Hello World!" Welcome message. 
 
 ### Tools: 
 * This paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
