@@ -8,10 +8,12 @@ void write_string( int colour, const char *string )
     }
 }
 
+//80x25
+
 void _start(){
 
 	char* mem = 0xb8000;
 	//0xb8000 + 2 * (row * 80 + col)
-	write_string(14, "test");
+	write_string(14, "KAAAS!!");
 
 }

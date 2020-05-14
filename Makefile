@@ -21,5 +21,8 @@ os-image.bin: bootsect.bin kernel.bin
 run: os-image.bin	
 	qemu-system-i386 -fda $<
 
-clean:
+cleanl:
 	rm *.bin *.o *.dis
+
+cleanw:
+	del *.bin *.o *.dis
