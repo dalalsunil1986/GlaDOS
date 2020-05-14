@@ -15,12 +15,15 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * Sound?
 
 ### So far: 
-* Succesfully created an empty boot sector (bootsector.bin) which we can open in VirtualBox
-* Succesfully created a boot sector that greets you with a nice "Hello World!" Welcome message. 
-* Succesfully created a print_string function to print a string on screen through the boot_sect.img.
+* Created an empty boot sector (bootsector.bin) which we can open in VirtualBox
+* Created a boot sector that greets you with a nice "Hello World!" Welcome message. 
+* Created a print_string function to print a string on screen through the boot_sect.img.
+* Created a new bootsector that uses the 32bit Protected Mode
 
 ### Tools: 
 * This paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
 * QEmu: https://www.qemu.org/
 * VirtualBox: https://www.virtualbox.org/
 * HxD: https://mh-nexus.de/en/hxd/
+* Make: https://www.gnu.org/software/make/
+* GCC: https://gcc.gnu.org/
