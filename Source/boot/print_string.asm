@@ -1,10 +1,11 @@
-print_string:
+print:
     pusha
 
-.start:
+
+start:
     mov al, [bx] 
     cmp al, 0 
-    je .done
+    je done
 
     
     mov ah, 0x0e
@@ -12,23 +13,13 @@ print_string:
 
    
     add bx, 1
-    jmp .start
+    jmp start
 
-.done:
+done:
     popa
     ret
 
-print_remove:
-    pusha
-    mov ah, 0x0e
-    mov al, 08h
-    int 0x10
-    mov al, 20h
-    int 0x10
-    mov al, 08h
-    int 0x10
-    popa
-    ret
+
 
 print_nl:
     pusha
