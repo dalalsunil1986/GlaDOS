@@ -1,5 +1,5 @@
 [bits 32]
-[extern main]
-call main
+[extern _start]
+call _start
 
 jmp $ ; endless loop if we return from main c function
