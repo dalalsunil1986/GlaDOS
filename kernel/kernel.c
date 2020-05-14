@@ -1,7 +1,17 @@
+void write_string( int colour, const char *string )
+{
+    volatile char *video = (volatile char*)0xB8000;
+    while( *string != 0 )
+    {
+        *video++ = *string++;
+        *video++ = colour;
+    }
+}
+
 void _start(){
-	char* video_memory = (char*) 0xb8000;
-	*video_memory = 'X';
-	while(1) {
-		*video_memory = 'X';	
-	}
+
+	char* mem = 0xb8000;
+	//0xb8000 + 2 * (row * 80 + col)
+	write_string(14, "test");
+
 }

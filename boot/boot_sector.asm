@@ -1,4 +1,4 @@
-
+[org 0x7c00]
 KERNEL_OFFSET equ 0x1000 ; memory offset of the kernel
 
 	mov [BOOT_DRIVE], dl ; The boot drive is stored in dl by the bios
