@@ -18,29 +18,13 @@ start:
 
 	mov si, help_string	
 	call print_string		
-	jmp $			
+	jmp $	
 
+%include "print_string.asm"		
 
 	boot_string db 'GlaDOS Online!', 0
 	help_string db 'I dont know what im doing anymore :(', 0
 	newline db 0dh, 0ah, 0
-
-
-print_string:	
-	pusha		
-	mov ah, 0Eh		
-
-.repeat:
-	lodsb			
-	cmp al, 0
-	je .done		
-	int 10h			
-	jmp .repeat
-
-.done:
-	popa
-	ret
-
 
 	times 510-($-$$) db 0	
 	dw 0xAA55		
