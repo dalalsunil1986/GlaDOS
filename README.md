@@ -19,6 +19,7 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * Created a boot sector that greets you with a nice "Hello World!" Welcome message. 
 * Created a print_string function to print a string on screen through the boot_sect.img.
 * Created a new bootsector that uses the 32bit Protected Mode
+* Created a keyboard driver
 
 ### Tools: 
 * This paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf
