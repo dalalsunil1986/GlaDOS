@@ -12,19 +12,19 @@ void write_string(int foreground, int background, const char *string )
 }
 
 //80x25
-void clear_screen() {
+void clear_screen(int color) {
 	char* mem = (char*)0xb8000;
 	for (unsigned int row = 0; row < 25; row++){
 		for (unsigned int col = 0; col < 80; col++){
 			*mem++ = ' ';
-			*mem++ = 0x1F;
+			*mem++ = color;
 		}
 	}
 }
 
 void _start(){
 
-	clear_screen();
-	write_string(15,1, "Dit is een test!");
+	clear_screen(0);
+	write_string(2,5, "Heyy!");
 
 }
