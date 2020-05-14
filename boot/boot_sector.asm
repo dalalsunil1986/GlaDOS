@@ -1,4 +1,3 @@
-[org 0x7c00]
 
 	mov bp, 0x9000
 	mov sp, bp
@@ -17,10 +16,13 @@
 %include "switch_to_pm.asm"
 
 [bits 32]
+[extern main] ; External C function
 
 BEGIN_PM:
 	mov ebx, MSG_PROT_MODE
 	call print_string_pm
+
+	call main
 
 	jmp $
 
