@@ -4,16 +4,16 @@ kernel.bin: kernel_entry.o kernel.o
 	ld -m elf_i386 -s -o $@ -Ttext 0x1000 $^ --oformat binary
 
 kernel_entry.o: 
-	nasm boot/kernel_entry.asm -f elf -o $@
+	nasm source/boot/kernel_entry.asm -f elf -o $@
 
 kernel.o : 
-	gcc -fno-pie -m32 -ffreestanding -c kernel/kernel.c -o $@
+	gcc -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
 
 kernel.dis: kernel.bin
 	ndisasm -b 32 $< > $@
 
 bootsect.bin: 
-	nasm boot/boot_sector.asm -f bin -o $@
+	nasm source/boot/boot_sector.asm -f bin -o $@
 
 os-image.bin: bootsect.bin kernel.bin
 	cat $^ > $@
