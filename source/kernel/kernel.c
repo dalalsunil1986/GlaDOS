@@ -5,7 +5,6 @@
 
 void _start(){
 	init_video();
-	settextcolor(15,0);
-	print_string("Hey!");
-
+	settextcolor(2,0);
+	print_string("GlaDOS> ");
 }
