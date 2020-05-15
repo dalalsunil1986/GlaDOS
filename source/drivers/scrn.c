@@ -154,3 +154,62 @@ void print_string(char *text)
         print_char(text[i]);
     }
 }
+
+//Fill one line with a chosen character
+void fill_line(char c, int width){
+
+    //Set cursor to margin
+    csr_x = 0;
+    move_csr();
+
+    //Write charater for givin width
+    for (int i = 0; i < width; i++)
+    {
+        print_char(c);
+    }
+}
+
+unsigned int window_borderForeColor = 0;
+unsigned int window_borderBackColor = 0;
+unsigned int window_fillForeColor = 0;
+unsigned int window_fillBackColor = 0;
+
+void windowcolor(unsigned int borderFore, unsigned int borderBack,unsigned int fillFore, unsigned int fillBack){
+    window_borderForeColor = borderFore;
+    window_borderBackColor = borderBack;
+    window_fillForeColor = fillFore;
+    window_fillBackColor = fillBack;
+}
+
+void create_window(int width, int height,int xOffset, int yOffset){
+    if((width + xOffset) > 80 || (height + yOffset) > 25){
+        settextcolor(4,15);
+        print_string("[Error]: create_window(); Size/Offset too large");
+        settextcolor(14,0);
+    }
+    else
+    {
+
+        for(int x = 0; x <= width; x++){
+            for(int y = 0; y <= height; y++){            
+                csr_x = x + xOffset;
+                csr_y = y + yOffset;
+                move_csr();
+
+                //Draw sides
+                if(x == 0 && y >= 1 && y <= height - 1 || x == width && y >= 1 && y <= height - 1 )
+                {
+                    settextcolor(window_borderForeColor,window_borderBackColor);
+                    print_char('|');
+                }else if(y == 0 || y == height){
+                    settextcolor(window_borderForeColor,window_borderBackColor);
+                    print_char('-');
+                }else{
+                    settextcolor(window_fillForeColor,window_fillBackColor);
+                    print_char(' ');
+                }
+            }
+        }
+
+    }    
+}
