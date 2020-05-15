@@ -1,3 +1,5 @@
+#include "utils.h"
+
 void write_string(int foreground, int background, const char *string )
 {
     volatile char *video = (volatile char*)0xB8000;
