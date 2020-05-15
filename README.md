@@ -15,6 +15,7 @@ Inspired by this paper: https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lect
 * Sound?
 
 ### So far: 
+![ascii art](https://github.com/mandirex/glados/raw/master/common/screenshot.png "Boot Screen")
 * Created an empty boot sector (bootsector.bin) which we can open in VirtualBox
 * Created a boot sector that greets you with a nice "Hello World!" Welcome message. 
 * Created a print_string function to print a string on screen through the boot_sect.img.
