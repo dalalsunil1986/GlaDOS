@@ -2,23 +2,6 @@ unsigned short *textmemptr;
 int attrib = 0x0F;
 int csr_x = 0, csr_y = 0;
 
-void* memcpy(void* dest, const void* src, int count)
-{
-    unsigned char* destC = (unsigned char*)dest;
-    unsigned char* srcC = (unsigned char*)src;
-    int i;
-    for (i = 0; i < count; i++)
-        destC[i] = srcC[i];
-    return dest;
-}
-
-unsigned short *memsetw(unsigned short *dest, unsigned char val, int count){
-    int i;
-    for (i = 0; i < count; i++)
-        dest[i] = val;
-    return dest;
-}
-
 void outportb(unsigned short _port, unsigned char _data)
 {
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (_port), "a" (_data));
@@ -120,7 +103,7 @@ void init_video(void)
 }
 
 //Writes a sigle character on screen
-void print_char(unsigned char c)
+void print_char(char c)
 {
     unsigned short *where;
     unsigned att = attrib << 8;
@@ -170,8 +153,8 @@ void print_char(unsigned char c)
     move_csr();
 }
 
-//Uses putch in a loop to write a string
-void print_string(unsigned char *text)
+//Uses print_char in a loop to write a string
+void print_string(char *text)
 {
     int i;
 

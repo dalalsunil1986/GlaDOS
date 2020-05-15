@@ -1,5 +1,6 @@
 #include "../drivers/asm_utils.h"
 #include "../drivers/scrn.h"
+#include "../cpu/isr.h"
 
 //80x25
 
@@ -11,6 +12,7 @@
 // print_string(unsigned char *text);									Write multiple charater to screen
 
 void _start(){
+	install_isr();
 	init_video();
 	settextcolor(2,0);
 	print_string("                        _____ _      ______ _____ _____          \n");
@@ -21,6 +23,7 @@ void _start(){
 	print_string("                        \\____/_|\\__,_|___/  \\___/\\____/          \n");
 
 
-	// Use the following bit of code to test the exceptions: 
-	asm volatile("int $1");
+	// Use the following bits of code to test the exceptions: 
+	asm volatile("int $2");
+	asm volatile("int $3");
 }
