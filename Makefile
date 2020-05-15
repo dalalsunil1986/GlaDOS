@@ -1,13 +1,16 @@
 all: run
 
-kernel.bin: kernel_entry.o kernel.o
+kernel.bin: kernel_entry.o kernel.o irq_handlers.o
 	ld -m elf_i386 -s -o $@ -Ttext 0x1000 $^ --oformat binary
 
 kernel_entry.o: 
 	nasm source/boot/kernel_entry.asm -f elf -o $@
 
+irq_handlers.o:
+	nasm source/boot/irq_handlers.asm -f elf -o $@
+
 kernel.o : 
-	gcc -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
+	gcc -Wall -Wextra -pedantic -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
 
 kernel.dis: kernel.bin
 	ndisasm -b 32 $< > $@
