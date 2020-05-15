@@ -13,8 +13,10 @@
 void _start(){
 	init_video();
 	settextcolor(2,0);
-	print_string("Hey!");
-	settextcolor(7,5);
-	cls();
-
+	print_string("                        _____ _      ______ _____ _____          \n");
+	print_string("                       |  __ \\ |     |  _  \\  _  /  ___|         \n");
+	print_string("               ______  | |  \\/ | __ _| | | | | | \\ `--.   ______ \n");
+	print_string("              |______| | | __| |/ _` | | | | | | |`--. \\ |______|\n");
+	print_string("                       | |_\\ \\ | (_| | |/ /\\ \\_/ /\\__/ /         \n");
+	print_string("                        \\____/_|\\__,_|___/  \\___/\\____/          \n");
 }
