@@ -4,17 +4,15 @@ HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Wextra -pedantic -m32 -fno-pie
 
-os-image.bin: boot/bootsect.bin kernel.bin
+all: run
+
+os-image.bin: boot/boot_sector.bin kernel.bin
 	cat $^ > os-image.bin
 
 kernel.bin: boot/kernel_entry.o ${OBJ}
-	ld -o $@ -Ttext 0x1000 $^ --oformat binary
-
-# Can be used for debugging purposes
-kernel.elf: boot/kernel_entry.o ${OBJ}
-	ld -o $@ -Ttext 0x1000
+	ld -o $@ -Ttext 0x1000 $^ -s -m elf_i386 --oformat binary
 
 run: os-image.bin	
 	qemu-system-i386 -fda $<
@@ -32,3 +30,6 @@ run: os-image.bin
 clean:
 	rm -rf *.bin *.dis *.o os-image.bin *.elf
 	rm -rf kernel/*.o boot/*.bin drivers/*.o boot/*.o cpu/*.o
+
+kernel.dis: kernel.bin
+	ndisasm -b 32 $< > $@
