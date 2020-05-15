@@ -1,6 +1,0 @@
-unsigned int restart_keyboard(){
-	int data = inportb(0x61);
-	outportb(0x61,data | 0x80);
-	outportb(0x61,data & 0x7F);
-	return 0;
-}
