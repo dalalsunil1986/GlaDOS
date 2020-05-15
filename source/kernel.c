@@ -1,5 +1,5 @@
 #include "asm_utils.h"
-
+//#include "interrupt.h"
 
 void write_string(int foreground, int background, const char *string )
 {
@@ -28,6 +28,6 @@ void clear_screen(int color) {
 void _start(){
 	
 	clear_screen(0);
-	write_string(2,5, "Heyy!");
+	write_string(2,5, "Je moeder");
 
 }
