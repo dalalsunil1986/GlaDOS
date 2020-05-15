@@ -20,5 +20,7 @@ void _start(){
 	print_string("                       | |_\\ \\ | (_| | |/ /\\ \\_/ /\\__/ /         \n");
 	print_string("                        \\____/_|\\__,_|___/  \\___/\\____/          \n");
 
-	
+
+	// Use the following bit of code to test the exceptions: 
+	asm volatile("int $1");
 }

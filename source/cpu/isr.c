@@ -39,7 +39,7 @@ void isr_installation() {
 }
 
 // The messages that define the exception
-char *exception_messages[] = {
+unsigned char *exception_messages[] = {
     "Division By Zero",
     "Debug",
     "Non Maskable Interrupt",
