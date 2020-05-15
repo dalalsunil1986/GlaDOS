@@ -9,12 +9,12 @@ kernel_entry.o:
 irq_handlers.o:
 	nasm source/boot/irq_handlers.asm -f elf -o $@
 
-kernel.o : 
+kernel.o : $(OBJ)
 	gcc -Wall -Wextra -pedantic -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
 
 kernel.dis: kernel.bin
 	ndisasm -b 32 $< > $@
-
+	
 bootsect.bin: 
 	nasm source/boot/boot_sector.asm -f bin -o $@
 
@@ -25,5 +25,4 @@ run: os-image.bin
 	qemu-system-i386 -fda $<
 
 clean:
-	rm *.bin *.o *.dis
-
+	rm *.bin *.o *.dis *.so

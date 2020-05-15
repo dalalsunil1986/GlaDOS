@@ -1,4 +1,5 @@
-#include "asm_utils.h"
+//#include "asm_utils.h"
+#include "scrn.c"
 //#include "interrupt.h"
 
 void write_string(int foreground, int background, const char *string )
@@ -15,19 +16,12 @@ void write_string(int foreground, int background, const char *string )
 }
 
 //80x25
-void clear_screen(int color) {
-	char* mem = (char*)0xb8000;
-	for (unsigned int row = 0; row < 25; row++){
-		for (unsigned int col = 0; col < 80; col++){
-			*mem++ = ' ';
-			*mem++ = color;
-		}
-	}
-}
 
 void _start(){
-	
-	clear_screen(0);
-	write_string(2,5, "Je moeder");
-
+    init_video();
+    settextcolor(15,2);
+    print_char('K');
+    settextcolor(2,15);
+    print_string("heyy \n kaas");
+    //cls();
 }
