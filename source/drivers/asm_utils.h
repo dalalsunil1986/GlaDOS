@@ -1,3 +1,5 @@
+#ifndef __ASM_UTILS_H
+#define __ASM_UTILS_H
 #include <stdint.h>
 // Inline means it will get replaced in the function call by the compiler
 // This saves on function calls making it a bit more efficient
@@ -100,3 +102,5 @@ static inline void io_wait(void)
                    "1:jmp 2f\n\t"
                    "2:" );
 }
+
+#endif
