@@ -7,7 +7,7 @@ kernel_entry.o:
 	nasm source/boot/kernel_entry.asm -f elf -o $@
 
 kernel.o : 
-	gcc -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
+	gcc -Wall -Wextra -pedantic -fno-pie -m32 -ffreestanding -c source/kernel.c -o $@
 
 kernel.dis: kernel.bin
 	ndisasm -b 32 $< > $@
