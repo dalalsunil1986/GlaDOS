@@ -90,7 +90,7 @@ void move_csr(void)
 }
 
 //Clear the screen
-static void cls()
+void cls()
 {
     unsigned blank;
     int i;
@@ -109,21 +109,21 @@ static void cls()
 }
 
 //Sets forecolor and backcolor
-static void settextcolor(unsigned char forecolor, unsigned char backcolor)
+void settextcolor(unsigned char forecolor, unsigned char backcolor)
 {
     //First 4 bytes is the background color and the last 4 is the foreground color
     attrib = (backcolor << 4) | (forecolor & 0x0F);
 }
 
 //Sets our text-mode VGA pointer, then clears the screen
-static void init_video(void)
+void init_video(void)
 {
     textmemptr = (unsigned short *)0xB8000;
     cls();
 }
 
 //Writes a sigle character on screen
-static void print_char(unsigned char c)
+void print_char(unsigned char c)
 {
     unsigned short *where;
     unsigned att = attrib << 8;
@@ -174,7 +174,7 @@ static void print_char(unsigned char c)
 }
 
 //Uses putch in a loop to write a string
-static void print_string(unsigned char *text)
+void print_string(unsigned char *text)
 {
     int i;
 
