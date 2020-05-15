@@ -1,7 +1,7 @@
 #include <stdint.h>
 // Read a 8,16 or 32 bit value at a given memory location using another segment than the c segement
-static inline uint8_t farpeekl(uint16_t sel, void* off);
-static inline uint16_t farpeekl(uint16_t sel, void* off);
+static inline uint8_t farpeekb(uint16_t sel, void* off);
+static inline uint16_t farpeekw(uint16_t sel, void* off);
 static inline uint32_t farpeekl(uint16_t sel, void* off);
 
 // Write a 8,16 or 32 bit value to given memory location using another segment than the c segement
