@@ -1,6 +1,7 @@
 #include "../drivers/asm_utils.h"
 #include "../drivers/scrn.h"
 #include "../cpu/isr.h"
+#include "../drivers/keyboard.h"
 
 //80x25
 
@@ -13,6 +14,7 @@
 
 void _start(){
 	install_isr();
+
 	init_video();
 	settextcolor(2,0);
 	print_string("                        _____ _      ______ _____ _____          \n");
@@ -22,8 +24,12 @@ void _start(){
 	print_string("                       | |_\\ \\ | (_| | |/ /\\ \\_/ /\\__/ /         \n");
 	print_string("                        \\____/_|\\__,_|___/  \\___/\\____/          \n");
 
+	// this functions enables the interrupts needed for keyboard input asm sti
+	enable_interrupts();
+	// JOEY KEYBOARD SHIZZLE WERKT
+	init_keyboard();
 
 	// Use the following bits of code to test the exceptions: 
-	asm volatile("int $2");
-	asm volatile("int $3");
+	//asm volatile("int $2");
+	//asm volatile("int $3");
 }

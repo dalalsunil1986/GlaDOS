@@ -103,4 +103,12 @@ static inline void io_wait(void)
                    "2:" );
 }
 
+static inline void enable_interrupts(void) {
+    asm volatile("sti");
+}
+
+static inline void disable_interrupts(void) {
+    asm volatile("cli");
+}
+
 #endif
