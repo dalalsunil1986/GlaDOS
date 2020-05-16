@@ -41,6 +41,4 @@ void _start(){
 	create_window(45,_HEIGHT - 1,1,0);
 	create_window(31,12,47,0);
 
-
-
 }
