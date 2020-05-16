@@ -40,7 +40,4 @@ void _start(){
 
 	init_keyboard();
 	init_timer((uint32)50);
-	// Use the following bits of code to test the exceptions: 
-	//asm volatile("int $2");
-	//asm volatile("int $3");
 }

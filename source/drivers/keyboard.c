@@ -1,8 +1,6 @@
 #include "keyboard.h"
-#include "asm_utils.h"
-#include "../cpu/isr.h"
-#include "scrn.h"
-#include "../kernel/utils.h"
+
+int keyPressed = 0;
 
 static void keyboard_callback(registers_t registers){
     // The PIC puts the scancode of the keyboard in this port:
@@ -13,7 +11,16 @@ static void keyboard_callback(registers_t registers){
     // print_string("Scancode: ");
     // print_string(ascii_scancode);
     // print_char('\n');
-    
+
+    keyPressed = 1;
+}
+
+// Wait for any key to be pressed;
+void waitForKey(void) {
+    keyPressed = 0;
+    while(!keyPressed) {
+
+    }
 }
 
 void init_keyboard(){
