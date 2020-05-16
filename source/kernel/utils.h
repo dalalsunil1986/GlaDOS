@@ -6,5 +6,7 @@ void* memcpy(void* dest, const void* src, int count);
 unsigned short *memsetw(unsigned short *dest, unsigned char val, int count);
 
 void itoa(int n, char str[]);
+int strlen(const char *str);
+void reverse(char string[]);
 
 #endif

@@ -2,7 +2,7 @@
 #include "../drivers/scrn.h"
 #include "../cpu/isr.h"
 #include "../drivers/keyboard.h"
-
+#include "../cpu/timer.h"
 
 #define _WITDH 80
 #define _HEIGHT 25
@@ -37,9 +37,9 @@ void _start(){
 
 	// this functions enables the interrupts needed for keyboard input asm sti
 	enable_interrupts();
-	// JOEY KEYBOARD SHIZZLE WERKT
-	init_keyboard();
 
+	init_keyboard();
+	init_timer((uint32)50);
 	// Use the following bits of code to test the exceptions: 
 	//asm volatile("int $2");
 	//asm volatile("int $3");

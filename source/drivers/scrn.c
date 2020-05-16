@@ -5,15 +5,6 @@ unsigned short *textmemptr;
 int attrib = 0x0F;
 int csr_x = 0, csr_y = 0;
 
-int strlen(const char *str)
-{
-    int count = 0;
-    while(*str!='\0'){
-        count++;
-        str++;
-    }
-    return count;
-}
 
 //Scrolls the screen
 void scroll(void)

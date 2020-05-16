@@ -17,6 +17,26 @@ unsigned short *memsetw(unsigned short *dest, unsigned char val, int count){
     return dest;
 }
 
+void reverse(char string[]) {
+    int c, i, j;
+    for(i=0, j = strlen(string) - 1; i<j;i++,j--){
+        c=string[i];
+        string[i] = string[j];
+        string[j] = c;
+    }
+}
+
+int strlen(const char *str)
+{
+    int count = 0;
+    while(*str!='\0'){
+        count++;
+        str++;
+    }
+    return count;
+}
+
+
 void itoa(int n, char str[]) {
     int i, sign;
     if ((sign = n) < 0) n = -n;
@@ -27,4 +47,6 @@ void itoa(int n, char str[]) {
 
     if (sign < 0) str[i++] = '-';
     str[i] = '\0';
+
+    reverse(str);
 }
