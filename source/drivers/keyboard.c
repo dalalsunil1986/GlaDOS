@@ -6,7 +6,7 @@
 
 static void keyboard_callback(registers_t registers){
     // The PIC puts the scancode of the keyboard in this port:
-    uint8_t scancode = inb(0x60);
+    uint8 scancode = inb(0x60);
 
     // KEYBOARD CODE GOES HERE
     char* ascii_scancode;

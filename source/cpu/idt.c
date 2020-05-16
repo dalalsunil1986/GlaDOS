@@ -1,5 +1,5 @@
 #include "idt.h"
-void set_idt_gate(int n, uint32_t handler) {
+void set_idt_gate(int n, uint32 handler) {
     idt[n].low_offset = ((handler) & 0xFFFF);
     idt[n].sel = KERNEL_CS;
     idt[n].always0 = 0;
@@ -8,7 +8,7 @@ void set_idt_gate(int n, uint32_t handler) {
 }
 
 void set_idt() {
-    idt_reg.base = (uint32_t) &idt;
+    idt_reg.base = (uint32) &idt;
     idt_reg.limit = IDT_ENTRIES * sizeof(idt_gate_t) - 1;
     // dont load idt load idt_reg
     asm volatile("lidtl (%0)" : : "r" (&idt_reg));

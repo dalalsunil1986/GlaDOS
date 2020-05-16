@@ -1,12 +1,12 @@
 #ifndef __ASM_UTILS_H
 #define __ASM_UTILS_H
-#include <stdint.h>
+#include "../kernel/int_types.h"
 // Inline means it will get replaced in the function call by the compiler
 // This saves on function calls making it a bit more efficient
 
 // For more info on the inline asm see: https://wiki.osdev.org/Inline_Assembly
-static inline uint8_t farpeekb(uint16_t sel, void* off) {
-    uint8_t ret;
+static inline uint8 farpeekb(uint16 sel, void* off) {
+    uint8 ret;
     asm("push %%fs\n\t"
         "mov %1, %%fs\n\t"
         "mov %%fs:(%2),%0\n\t"
@@ -16,8 +16,8 @@ static inline uint8_t farpeekb(uint16_t sel, void* off) {
     return ret;
 }
 
-static inline uint16_t farpeekw(uint16_t sel, void* off) {
-    uint16_t ret;
+static inline uint16 farpeekw(uint16 sel, void* off) {
+    uint16 ret;
     asm("push %%fs\n\t"
         "mov %1, %%fs\n\t"
         "mov %%fs:(%2),%0\n\t"
@@ -27,8 +27,8 @@ static inline uint16_t farpeekw(uint16_t sel, void* off) {
     return ret;
 }
 
-static inline uint32_t farpeekl(uint16_t sel, void* off) {
-    uint32_t ret;
+static inline uint32 farpeekl(uint16 sel, void* off) {
+    uint32 ret;
     asm("push %%fs\n\t"
         "mov %1, %%fs\n\t"
         "mov %%fs:(%2),%0\n\t"
@@ -38,7 +38,7 @@ static inline uint32_t farpeekl(uint16_t sel, void* off) {
     return ret;
 }
 
-static inline void farpokeb(uint16_t sel, void* off, uint8_t val){
+static inline void farpokeb(uint16 sel, void* off, uint8 val){
     asm("push %%fs\n\t"
         "mov %0, %%fs\n\t"
         "movb %2, %%fs:(%1)\n\t"
@@ -47,7 +47,7 @@ static inline void farpokeb(uint16_t sel, void* off, uint8_t val){
     );
 }
 
-static inline void farpokew(uint16_t sel, void* off, uint16_t val){
+static inline void farpokew(uint16 sel, void* off, uint16 val){
     asm("push %%fs\n\t"
         "mov %0, %%fs\n\t"
         "movb %2, %%fs:(%1)\n\t"
@@ -56,7 +56,7 @@ static inline void farpokew(uint16_t sel, void* off, uint16_t val){
     );
 }
 
-static inline void farpokel(uint16_t sel, void* off, uint32_t val){
+static inline void farpokel(uint16 sel, void* off, uint32 val){
     asm("push %%fs\n\t"
         "mov %0, %%fs\n\t"
         "movb %2, %%fs:(%1)\n\t"
@@ -66,32 +66,32 @@ static inline void farpokel(uint16_t sel, void* off, uint32_t val){
 }
 
 
-static inline void outb(uint16_t port, uint8_t val) {
+static inline void outb(uint16 port, uint8 val) {
     asm volatile("outb %0, %1" : : "a"(val), "Nd"(port));
 }
 
-static inline void outw(uint16_t port, uint16_t val) {
+static inline void outw(uint16 port, uint16 val) {
     asm volatile("outb %0, %1" : : "a"(val), "Nd"(port));
 }
 
-static inline void outl(uint16_t port, uint32_t val) {
+static inline void outl(uint16 port, uint32 val) {
     asm volatile("outb %0, %1" : : "a"(val), "Nd"(port));
 }
 
-static inline uint8_t inb(uint16_t port){
-    uint8_t ret;
+static inline uint8 inb(uint16 port){
+    uint8 ret;
     asm volatile("inb %1, %0": "=a"(ret) : "Nd" (port));
     return ret;
 }
 
-static inline uint8_t inw(uint16_t port){
-    uint16_t ret;
+static inline uint8 inw(uint16 port){
+    uint16 ret;
     asm volatile("inb %1, %0": "=a"(ret) : "Nd" (port));
     return ret;
 }
 
-static inline uint8_t inl(uint16_t port){
-    uint32_t ret;
+static inline uint8 inl(uint16 port){
+    uint32 ret;
     asm volatile("inb %1, %0": "=a"(ret) : "Nd" (port));
     return ret;
 }
