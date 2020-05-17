@@ -4,6 +4,8 @@
 #include "../drivers/keyboard.h"
 #include "../cpu/timer.h"
 
+#include "../drivers/scancodes.h"
+
 #define _WITDH 80
 #define _HEIGHT 25
 //80x25
@@ -27,7 +29,6 @@ void _start(){
 
 	init_video();
 	settextcolor(14,0);
-	print_string("Booted GlaDOS successfully!\n");
 	print_string("                        _____ _      ______ _____ _____          \n");
 	print_string("                       |  __ \\ |     |  _  \\  _  /  ___|         \n");
 	print_string("               ______  | |  \\/ | __ _| | | | | | \\ `--.   ______ \n");
@@ -35,6 +36,9 @@ void _start(){
 	print_string("                       | |_\\ \\ | (_| | |/ /\\ \\_/ /\\__/ /         \n");
 	print_string("                        \\____/_|\\__,_|___/  \\___/\\____/          \n");
 	fill_line('=',_WITDH);
+	print_char('\n');
+	print_string("Booted GlaDOS successfully!\n");
+	print_string("Press any key to continue...\n");
 	waitForKey();
 	cls();
 	windowcolor(14,0,14,0);

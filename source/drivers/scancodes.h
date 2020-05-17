@@ -1,3 +1,6 @@
+#ifndef __SCANCODES_H
+#define __SCANCODES_H
+
 #define KEY_RESERVED 0x0
 #define KEY_ESC 0x1
 #define KEY_1 0x2
@@ -436,3 +439,5 @@
 #define KEY_DATA 0x277
 #define KEY_ONSCREEN_KEYBOARD 0x278
 #define KEY_MAX 0x2FF
+
+#endif

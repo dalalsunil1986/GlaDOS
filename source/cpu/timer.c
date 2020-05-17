@@ -4,11 +4,7 @@ uint32 tick = 0;
 
 void timer_callback(registers_t regs) {
     tick++;
-    // char tickInASCII[256];
-    // itoa(tick, tickInASCII);
-    // print_string(tickInASCII);
-    // print_char('\n');
-}
+} 
 
 uint32 getTick() {
     return tick;
