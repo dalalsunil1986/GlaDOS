@@ -8,6 +8,6 @@
 #include "../kernel/int_types.h"
 
 void init_timer(uint32 freq);
-uint32 getTick();
+uint32 getTick(void);
 
 #endif

@@ -6,7 +6,7 @@ void timer_callback(registers_t regs) {
     tick++;
 } 
 
-uint32 getTick() {
+uint32 getTick(void) {
     return tick;
 }
 
