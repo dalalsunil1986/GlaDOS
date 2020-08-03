@@ -1,9 +1,10 @@
 #include "detect_mem.h"
+__asm__(".code16gcc\n");
 
-int __attribute__((noinline)) __attribute__((regparm(3))) detectMemory(SMAP_entry_t* buffer, int maxentries)
+uint32 __attribute__((noinline)) __attribute__((regparm(3))) detectMemory(SMAP_entry_t* buffer, int maxentries)
 {
 	uint32 contID = 0;
-	int entries = 0, signature, bytes;
+	uint32 entries = 0, signature, bytes;
 	do 
 	{
 		__asm__ __volatile__ ("int  $0x15" 

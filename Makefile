@@ -15,7 +15,7 @@ kernel.bin: boot/kernel_entry.o ${OBJ}
 	ld -o $@ -Ttext 0x1000 $^ -s -m elf_i386 --oformat binary
 
 run: os-image.bin	
-	qemu-system-x86_64 -cpu Nehalem-v2 -fda $<
+	qemu-system-x86_64 -m 1G -vga cirrus -cpu Nehalem-v2 -fda $<
 
 # For all targets .o from all .c and all headers
 %.o: %.c ${HEADERS}

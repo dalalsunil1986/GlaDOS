@@ -14,6 +14,6 @@ typedef struct SMAP_entry {
 }__attribute__((packed)) SMAP_entry_t;
 
 
-int __attribute__((noinline)) __attribute__((regparm(3))) detectMemory(SMAP_entry_t* buffer, int maxentries);
+uint32 __attribute__((noinline)) __attribute__((regparm(3))) detectMemory(SMAP_entry_t* buffer, int maxentries);
 
 #endif

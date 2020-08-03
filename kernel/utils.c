@@ -10,11 +10,18 @@ void* memcpy(void* dest, const void* src, int count)
     return dest;
 }
 
-unsigned short *memsetw(uint16 *dest, uint16 val, int count){
-    int i;
-    for (i = 0; i < count; i++)
+// Sets the bytecount amount of words (2 bytes) in memory to the value given in val
+unsigned short *memsetw(uint16 *dest, uint16 val, int bytecount){
+    for (int i= 0; i < bytecount; i++)
         dest[i] = val;
     return dest;
+}
+
+uint8 reverseByte(uint8 b){
+   b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+   b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+   b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+   return b;
 }
 
 void reverse(char string[]) {
@@ -37,8 +44,8 @@ int strlen(const char *str)
 }
 
 // Convert an integer to ascii chars
-void itoa(int n, char str[]) {
-    int i, sign;
+void itoa(uint32 n, char str[]) {
+    uint32 i, sign;
     if ((sign = n) < 0) n = -n;
     i = 0;
     do {
