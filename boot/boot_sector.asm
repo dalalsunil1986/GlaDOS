@@ -51,4 +51,5 @@ MSG_PROT_MODE db "Succesfully landed in 32 bit protected mode", 0
 MSG_LOAD_KERNEL db "Loading Kernel into memory.", 0
 
 times 510-($-$$) 	db 0            ; Fill up to the required boot sector size of 512 bytes
-dw 0xaa55
+dw 0xaa55							; The last two bytes need to be the 'magic number' for our computer to
+									; Recognize this as a valid bootsector

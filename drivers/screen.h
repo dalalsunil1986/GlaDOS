@@ -7,10 +7,10 @@
 #include "../kernel/mem.h"
 
 void cls(void);
-void setforegroundcolor(uint8 color);
-void resetcolor(void);
+void setForegroundColor(uint8 color);
+void resetColor(void);
 void init_vga_t(void);
-void printk(char *text);
+void printk(const char *text);
 void scroll(void);
 void move_csr(void);
 // void fill_line(char c, int width);

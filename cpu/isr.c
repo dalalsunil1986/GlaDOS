@@ -143,10 +143,5 @@ void isr_handler(registers_t r) {
 // Register a handler for IRQ n with callback function handler
 // You can find the values for n as defined in isr.h
 void register_interrupt_handler(uint8 n, isr_t handler){
-    // char string[3];
-    // itoa(n, string);
-    // printk("Registered interrupt ");
-    // printk(string);
-    // printk("\n");
     interrupt_handlers[n] = handler;
 }

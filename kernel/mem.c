@@ -1,8 +1,8 @@
 #include "mem.h"
 
-#define BASE 0x100000
+#define BASE 0x1000000
 
-void* tracker = BASE;
+static void* tracker = BASE;
 
 
 // TODO:

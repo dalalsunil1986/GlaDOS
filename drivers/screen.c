@@ -22,38 +22,32 @@ void print_char(char c){
     vidmem = (uint16 *) VID_MEM_ADDR;
     
     //Handle a backspace, by moving the cursor back one space
-    if(c == 0x08)
-    {
+    if(c == 0x08){
         if(csr_x != 0) csr_x--;
     }
 
-    //Handles tab by incrementing the cursor's x
-    else if(c == 0x09)
-    {
+    //Handle a tab by incrementing the cursor's x
+    else if(c == 0x09){
         csr_x = (csr_x + 8) & ~(8 - 1);
     }
 
     //returns cursor back to the margin
-    else if(c == '\r')
-    {
+    else if(c == '\r'){
         csr_x = 0;
     }
 
     //if \n in string create a newline
-    else if(c == '\n')
-    {
+    else if(c == '\n'){
         csr_x = 0;
         csr_y++;
     }
 
-    //Any character greater than or equal to space is printable by: Index = [(y * width) + x]
-    else if(c >= ' ')
-    {
+    //Any character greater than or equal to space is printable at: offset = [(y * width) + x]
+    else if(c >= ' '){
         offset = (uint16)((csr_y * SCREEN_WIDTH) + csr_x);
 
-        vidmem[offset] = (uint16)c| ((uint16)attrib<<8);
+        vidmem[offset] = (uint16)c|((uint16)attrib<<8);
         csr_x++;
-        
     }
 
     if(csr_x>= SCREEN_WIDTH){
@@ -88,8 +82,8 @@ void scroll(void)
 }
 
 // Print text using the kernel print function
-void printk(char* string) {
-    for(int i = 0; i < strlen(string); i++){
+void printk(const char* string) {
+    for(uint16 i = 0; i < strlen(string); i++){
         print_char(string[i]);
     }
 }
@@ -103,14 +97,12 @@ void init_vga_t(void) {
 
 void cls(void){
     uint16 blank;
-
-    //Sets our current color
-    blank = 0x20 | (WHITE_ON_BLACK << 8);
-
-    // Sets the VID_MEM from 0xb8000 to (25*80) to blanks
+    blank = 0x20 | ((uint16)attrib << 8);
+    
+    // Sets the VID_MEM from (int)753664 to (int)753664 + (25*80) to blanks
     memsetw(VID_MEM_ADDR, blank, SCREEN_WIDTH * SCREEN_HEIGHT);
 
-    //Set the cursor back to 0,0
+    // Reset the cursor to the 0,0 position (Top right)
     csr_x = 0;
     csr_y = 0;
     move_csr();
@@ -128,11 +120,11 @@ void move_csr(void)
     outb(SCREEN_DATA, temp);
 }
 
-void resetcolor(void) {
+void resetColor(void) {
     attrib = WHITE_ON_BLACK;
 }
 
-void setforegroundcolor(uint8 color){
+void setForegroundColor(uint8 color){
     attrib = 0b1111111100000000 | color;
 }
 

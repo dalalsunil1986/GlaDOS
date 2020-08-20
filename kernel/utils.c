@@ -33,9 +33,9 @@ void reverse(char string[]) {
     }
 }
 
-int strlen(const char *str)
+uint8 strlen(const char *str)
 {
-    int count = 0;
+    uint8 count = 0;
     while(*str!='\0'){
         count++;
         str++;

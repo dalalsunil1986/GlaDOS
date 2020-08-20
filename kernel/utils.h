@@ -8,7 +8,7 @@ void* memcpy(void* dest, const void* src, int count);
 uint16 *memsetw(uint16 *dest, uint16 val, int bytecount);
 
 void itoa(uint32 n, char str[]);
-int strlen(const char *str);
+uint8 strlen(const char *str);
 void reverse(char string[]);
 void appendc(char s[], char n);
 void appends(char a[], char b[]);

@@ -1,17 +1,16 @@
 #include "timer.h"
 #include "../drivers/screen.h"
 
-uint32 timer_ticks;
+volatile uint32 tticks = 0; // Volatile means the value can change at any moment without this variable having any code nearby that can change it
 
 void init_timer(void) {
-    timer_ticks = 0;
-    register_interrupt_handler(IRQ0, timer_callback);
+    register_interrupt_handler(IRQ0, (unsigned)timer_callback);
 }
 
 void timer_callback(registers_t regs){
-    timer_ticks+=1;
+    tticks++;
 }
 
 uint32 getTimerTicks(void) {
-    return timer_ticks;
+    return tticks;
 }

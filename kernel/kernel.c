@@ -2,6 +2,7 @@
 #include "./inttypes.h"
 #include "./asm_utils.h"
 #include "../cpu/isr.h"
+#include "../drivers/keyboard_driver.h"
 #include "detect_mem.h"
 #include "utils.h"
 #include "timer.h"
@@ -13,7 +14,17 @@ void _start(void) {
 	enable_interrupts();
     init_vga_t();
     init_timer();
-
-    printk("Default color\n");
-    setforegroundcolor(VGA_DGRAY);
+    init_keyboard();
+    setForegroundColor(VGA_GREEN);
+    uint32 ticks = 0;
+    while(ticks < 50){
+        
+        char string[32];
+        ticks = getTimerTicks();
+        itoa(ticks, string);
+        appendc(string, '\n');
+        printk(string);
+        
+    }
+    printk("test");
 }
