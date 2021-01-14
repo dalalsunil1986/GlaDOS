@@ -8,6 +8,8 @@
 
 void cls(void);
 void setForegroundColor(uint8 color);
+void setBackgroundColor(uint8 color);
+void setColor(uint8 foregroundColor, uint8 backgroundColor);
 void resetColor(void);
 void init_vga_t(void);
 void printk(const char *text);

@@ -4,8 +4,6 @@
 #define WHITE_ON_BLACK 0x0F     // The default WHITE ON BLACK color scheme
 #define VID_MEM_ADDR 0xB8000    // The address at the start of the video memory
 
-uint16 * vidmem;
-uint16 attrib;                  // This doesnt work when using it in the attribute color section
 uint16 csr_x = 0;               // Cursor x position
 uint16 csr_y = 0;               // Cursor y position
 
@@ -14,13 +12,15 @@ uint16 csr_y = 0;               // Cursor y position
 #define SCREEN_HEIGHT   25      // The width of the screen in chars
 #define SCREEN_WIDTH    80      // The height of the screen in chars
 
-uint16 offset;
+uint8 foregroundCol, backgroundCol = 0x0;
 
 int counter = 0;
 // Print this char to the screen at pos (csr_x, csr_y)
 void print_char(char c){
-    vidmem = (uint16 *) VID_MEM_ADDR;
+    volatile uint16 * vidmem = (uint16 *) VID_MEM_ADDR;
+    volatile uint8 color = foregroundCol | (backgroundCol << 4);
     
+
     //Handle a backspace, by moving the cursor back one space
     if(c == 0x08){
         if(csr_x != 0) csr_x--;
@@ -44,9 +44,9 @@ void print_char(char c){
 
     //Any character greater than or equal to space is printable at: offset = [(y * width) + x]
     else if(c >= ' '){
-        offset = (uint16)((csr_y * SCREEN_WIDTH) + csr_x);
+        uint16 offset = (uint16)((csr_y * SCREEN_WIDTH) + csr_x);
 
-        vidmem[offset] = (uint16)c|((uint16)attrib<<8);
+        vidmem[offset] = (uint16)c|((uint16)color<<8);
         csr_x++;
     }
 
@@ -67,15 +67,12 @@ void scroll(void)
 {
     unsigned blank;
 
-    /* A blank is defined as a space... we need to give it
-    *  backcolor too */
-    blank = 0x20 | (WHITE_ON_BLACK << 8);
+    blank = 0x20 | (((uint16)foregroundCol | (backgroundCol << 4)) << 8);
     uint8 row = SCREEN_WIDTH * 2;
-    // Move everything up one line:
+    // Copy everything on the screen minus the top most line and move it one line up;
     memcpy(VID_MEM_ADDR, VID_MEM_ADDR + row, (SCREEN_WIDTH * SCREEN_HEIGHT * 2) - row);
 
-    /* Finally, we set the chunk of memory that occupies
-    *  the last line of text to our 'blank' character */
+    // We set the bottom most line on our screen to the blanking characting
     memsetw(VID_MEM_ADDR + (SCREEN_WIDTH * (SCREEN_HEIGHT-1) *2), blank, row);
     csr_y--;
 
@@ -90,14 +87,14 @@ void printk(const char* string) {
 
 // This will init the text based vga mode
 void init_vga_t(void) {
-    attrib = WHITE_ON_BLACK;
+    resetColor();
     cls();
     move_csr();
 }
 
 void cls(void){
     uint16 blank;
-    blank = 0x20 | ((uint16)attrib << 8);
+    blank = 0x20 | (((uint16)foregroundCol | (backgroundCol << 4)) << 8);
     
     // Sets the VID_MEM from (int)753664 to (int)753664 + (25*80) to blanks
     memsetw(VID_MEM_ADDR, blank, SCREEN_WIDTH * SCREEN_HEIGHT);
@@ -121,10 +118,18 @@ void move_csr(void)
 }
 
 void resetColor(void) {
-    attrib = WHITE_ON_BLACK;
+    foregroundCol = VGA_GREEN;
+    backgroundCol = VGA_BLACK;
 }
 
 void setForegroundColor(uint8 color){
-    attrib = 0b1111111100000000 | color;
+    foregroundCol =  color;
 }
 
+void setBackgroundColor(uint8 color) {
+    backgroundCol =  color;
+}
+void setColor(uint8 foregroundColor, uint8 backgroundColor) {
+    foregroundCol =  foregroundColor;
+    backgroundCol = backgroundColor;
+}

@@ -16,6 +16,7 @@ void _start(void) {
     init_timer();
     init_keyboard();
     setForegroundColor(VGA_GREEN);
+    setBackgroundColor(VGA_BLACK);
     uint32 ticks = 0;
     while(ticks < 50){
         
